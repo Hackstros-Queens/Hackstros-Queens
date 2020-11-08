@@ -9,7 +9,9 @@
         <!-- Font Awesome icons (free version)-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+        <!-- Librairy MathJax for equations -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css" />
@@ -27,7 +29,7 @@
                       <li class="nav-item mr-0 mx-rg-1 justify-content-start"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#header">THE HACKSTROS QUEENS AND KINGS</a></li>
                     </ul>
                     <ul class="navbar-nav ml-auto .justify-content-end">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#portfolio">OUR SIMULATION</a>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#portfolio">SIMULATIONS</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html#about">ABOUT</a>
                         </li>
@@ -36,11 +38,12 @@
                           <a class="nav-link dropdown-toggle"  style="line-height: 40px"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="fa fa-bars" aria-hidden="true"></i></a>
                           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="StellarEvolution.html">Stellar Evolution</a>
                             <a class="dropdown-item" href="Trajectories.html">Trajectories</a>
                             <a class="dropdown-item" href="Relativity.html">Relativity</a>
-                            <a class="dropdown-item" href="FluidDynamics.html">Fluid Dynamics</a>
                             <a class="dropdown-item" href="Musics.html">Music</a>
+                            <a class="dropdown-item" href="Electromagnetism.html">Electromagnetism</a>
+                            <a class="dropdown-item" href="FluidDynamics.html">Fluid Dynamics</a>
+                            <a class="dropdown-item" href="StellarEvolution.html">Stellar Evolution</a>
                           </div>
                         </li>
                     </ul>
@@ -67,9 +70,66 @@
           <div style="background-color:#1abc9c;">
             <div class="container" style="background-color:white; margin-bottom:50px;">
               <div class="container d-flex align-items-center flex-column" >
-                <div style="margin-top:30px">
-                  <img src="assets/animations/fluid/polluant.gif"></img>
+                <p><br>
+                Le mouvement des fluides peut être décrit par les équations de Navier-Stokes, équations connues pour l'inexistance d'une solution analytique à ce jour. C'est pourquoi une approche numérique est envisagée dans la plupart des cas lorsque
+                le problème est plus ou moins complexe.
+                <span class="encadrer-un-contenu">
+                $$  \frac{\partial c}{\partial t}=-u_{x}(x, y, t) \frac{\partial c}{\partial x}-u_{y}(x, y, t) \frac{\partial c}{\partial y}+D\left(\frac{\partial^{2} c}{\partial x^{2}}+\frac{\partial^{2} c}{\partial y^{2}}\right)+S(x, y, t)$$
+                </span>
+
+                En regardant l'équation ci-dessus, on remarque que la concentration \(c\) du polluant, c'est-à-dire le rapport de sa masse par unité de volumne par rapport à la densité (masse sur volume) du milieu dans lequel il se disperse, est régit par trois paramètres importants : l'advection, la diffusion et la source du polluant.
+                <br><br>
+                Les deux premièrs termes à droite de l'équation représentent les termes advectifs. <span style="font-weight: bold;"> L'advection</span> est le transport d'une quantité, ici la concentration du polluant, causé par le mouvement de son milieu environnant, ici décrit par la vitesse de l'air atmosphérique.
+                Puis, le troisième terme permet de décrire la diffusion du fluide à l'aide du coefficient \(D\) de diffusion. La <span style="font-weight: bold;"> diffusion</span> désigne la tendance d'un naturelle système à rendre uniforme le potentiel chimique de chacune des espèces chimiques qu'il comporte. En d'autres mots, les espèces chimiques vont d'un milieu à forte concentration vers un milieu de faible concentration.
+                Enfin, le dernier terme permet de tenir compte de la source \(S\) du polluant. La <span style="font-weight: bold;">source</span> permet de décrire le profil spatial (x,y) et temporelle de l'élément émettant le polluant.
+                <br><br><br>
+
+                Supposons qu'une fonderie, placée au centre de la simulation, émette de manière constante un gaz contenant de l'arsenic pendant \(t = 2.5\). Les conditions frontières sont telles que le fluide atteignant l'extrémité gauche se retrouve ensuite à l'extrémité droite, de même pour le haut et le bas.
+
+                </p>
+                <div class="row justify-content-center">
+                    <!-- Portfolio Items-->
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal0">
+                          <img class="img-fluid rounded" src="assets/animations/fluid/sans_vitesse.gif" alt="sansVitesse"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal0">
+                          <img class="img-fluid rounded" src="assets/animations/fluid/sans_D.gif" alt="sansD"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal0">
+                          <img class="img-fluid rounded" src="assets/animations/fluid/polluant.gif" alt="polluant"/>
+                        </div>
+                    </div>
                 </div>
+      <!-- Description -->
+                <div class="row justify-content-center" style="margin-top:-35px; width:100%">
+                    <!-- Portfolio Items-->
+                    <div class="col-md-12 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal0">
+                          <p style="text-align:center; font-size:15px;">Figure 1 :Diffusif term only</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+                          <p style="text-align:center; font-size:15px;">Figure 2 :Advectif terms only</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
+                          <p style="text-align:center; font-size:15px;">Figure 3 : Both of them</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p> Sur la première figure, il n'y a que le terme diffusif. Comme celui-ci n'est pas très élevé (Nombre de Peclet élevé), le polluant ne se déplace pas beaucoup par rapport à sa position d'origine.
+                  Puis, en n'utilisant que les termes advectifs, on voit que le polluant est fortement poussé par l'air atmosphérique et se retrouve à être diluer. En tenant compte de la vitesse des vents et de la diffusion, comme sur la Figure 3, le fluide se déplace plus rapidement.
+
+                  Morale de l'histoire: il ne faut donc pas rester près de la source s'il ne vente pas, aux risques d'attraper un cancer !
+
               </div>
             </div>
           </div>
