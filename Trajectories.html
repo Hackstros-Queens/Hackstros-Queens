@@ -70,25 +70,65 @@
           <div style="background-color:#1abc9c;">
             <div class="container" style="background-color:white; margin-bottom:50px;">
               <div class="container d-flex align-items-center flex-column" >
-                <div style="margin-top:30px">
-                  <video width="700" height="500" controls>
-                  <source src="assets/animations/projectile/angle.mp4" type=video/mp4>
-                  </video>
+                <p style="text-align:justify"><br>
+                The question is: <i>How can we describe the motion of an object thrown in the air mathematically?</i> The easy way to solve that kind of problem is to separate the movement in its two components: the horizontal movement (x-axis) and the vertical movement (y-axis). Since the horizontal component is not subjected to gravity, we can describe its movement as a <span style = "font-weight: bold;">uniform rectilinear motion</span>, i.e. a constant-speed motion. It is therefore simply:
+                $$v_x = \frac{\Delta x}{\Delta t}$$
+
+                Here, \(v_x\) is the constant-speed, and \(\Delta x\) and \(\Delta t\) are the variation in length and time. <br><br>
+
+                As you may expect, the vertical component is fully subjected to gravity; we can describe its motion as a <span style = "font-weight: bold;">free fall</span>. The motion is represented by the equations of <span style = "font-weight: bold;">uniformly accelerated movement</span>. For example, we can use this expression to find the y-position as a function of time y(t):
+                $$y(t) = y_0 + v_0y t + \frac{1}{2} a t^2$$
+                Here, y_0 is the initial y-position, v_0y is the initial y-speed and a is the gravitational acceleration (on Earth a = g = -9.81 m/\(s^2\)). Note that a = g only because we are in a free fall situation.<br>
+                To better visualize what is going on during a free-fall, watch the follow simulation:
+                </p>
+                <div class="container d-flex align-items-center flex-column" >
+                  <div style="margin-top:30px">
+                    <video width="700" height="500" controls>
+                    <source src="assets/animations/relativity/freefall.mp4" type=video/mp4>
+                    </video>
+                  </div>
                 </div>
-              </div>
-              <div class="container d-flex align-items-center flex-column" >
-                <div style="margin-top:30px">
-                  <video width="700" height="500" controls>
-                  <source src="assets/animations/projectile/gravity.mp4" type=video/mp4>
-                  </video>
-                </div>
-              </div>
-              <div class="container d-flex align-items-center flex-column" >
-                <div style="margin-top:30px">
-                  <video width="700" height="500" controls>
-                  <source src="assets/animations/projectile/speed.mp4" type=video/mp4>
-                  </video>
-                </div>
+                <p style="text-align:justify"><br>
+
+                  Note that the “gravity” vector is always oriented downward, but the speed-vector changes direction after reaching its maximal height.<br><br>
+
+                  In short, it is the<span style = "font-weight: bold;"> combination</span> of these two components that produces the parabolic (arc-like) trajectory. What connects them: the time-variable (or otherwise the physics would not really work…).
+                  <br><br>
+                  Let’s explore the variation of the different parameters; here, v_0y, a and the initial angle.<br><br>
+
+                  <span style="text-decoration:underline">Variation of the initial angle:</span><br><br>
+
+                  <div style="margin-top:30px">
+                    <video width="700" height="500" controls>
+                    <source src="assets/animations/projectile/angle.mp4" type=video/mp4>
+                    </video>
+                  </div>
+                  <br>
+                  The initial angle at which you are throwing the object will affect the shape of the trajectory and the time it takes to return to its initial height. As you may see on the following simulation, the greater the angle, the higher the object will go, and the longer it will take. The “optimal” angle is 45; this angle will maximize the horizontal range!
+                  <br><br>
+
+                  <span style="text-decoration:underline">Variation of the gravity:</span><br><br>
+
+                  <div style="margin-top:30px">
+                    <video width="700" height="500" controls>
+                    <source src="assets/animations/projectile/gravity.mp4" type=video/mp4>
+                    </video>
+                  </div>
+                  <br>
+                  Gravity on other planets (and stars) is different: it depends on the radius and the mass of the body. For example, the gravity on Mars and on the Moon are -3.7 m/s^2 and -1.6 m/s^2 respectively.  The following simulation shows that the object takes way more time to come back on the surface of the Moon. In other words, it might be a little boring to play catch-and-throw on the Moon…
+                  <br><br>
+
+                  <span style="text-decoration:underline">Variation of the initial speed:</span><br><br>
+
+                  <div style="margin-top:30px">
+                    <video width="700" height="500" controls>
+                    <source src="assets/animations/projectile/speed.mp4" type=video/mp4>
+                    </video>
+                  </div>
+                  <br>
+
+                  It should be no surprise that if we throw an object with more speed, it will take more time and will go further. Experience it yourself!<br>
+                </p>
               </div>
               </div>
             </div>
