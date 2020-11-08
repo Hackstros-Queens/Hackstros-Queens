@@ -17,8 +17,13 @@
         <!-- Fonts CSS-->
         <link rel="stylesheet" href="css/heading.css">
         <link rel="stylesheet" href="css/body.css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
-    <body id="page-top" style="background-color:#1abc9c;">
+    <body id="page-top" style="background-color:#1abc9c;" onload="wave(modelist = [1,2,3],phaselist = [1,2,1/6,3],Alist = [1,1/2,1/3,1/4],divname='myDiv1')">
         <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
             <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top"></a>
                 <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
@@ -33,11 +38,13 @@
                         </li>
                         <!-- Dropdown -->
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                          <a class="nav-link dropdown-toggle"  style="line-height: 40px"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <i class="fa fa-bars" aria-hidden="true"></i></a>
                           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="StellarEvolution.html">Stellar Evolution</a>
                             <a class="dropdown-item" href="Trajectories.html">Trajectories</a>
+                            <a class="dropdown-item" href="Relativity.html">Relativity</a>
+                            <a class="dropdown-item" href="FluidDynamics.html">Fluid Dynamics</a>
                             <a class="dropdown-item" href="Musics.html">Music</a>
                           </div>
                         </li>
@@ -64,19 +71,31 @@
         <section>
           <div style="background-color:#1abc9c;">
             <div class="container" style="background-color:white; margin-bottom:50px;">
-              <div class="container d-flex align-items-center flex-column" >
-                <div style="margin-top:30px">
-                  <video width="700" height="500" controls>
-                  <source src="assets/animations/StellarEvolution/1MSol.mp4" type=video/mp4>
-                  </video>
-                </div>
+
+              <p id="SavedI" style="display: None">1</p>
+
+              <div class="row justify-content-center" id="myRow" value="1">
+                  <div id="myDiv1" class='col-6 mb-0' style="width:auto;height:auto;"></div>
               </div>
-              <div class="container d-flex align-items-center flex-column">
-                <div style="margin-top:30px">
-                  <video width="700" height="500" controls>
-                  <source src="assets/animations/StellarEvolution/25MSol.mp4" type=video/mp4>
-                  </video>
-                </div>
+              <div class="row justify-content-center">
+              <input type="checkbox" id="1rstmode" name="1rstmode" value="1" checked>
+              <label for="1rstmode"> 1rst mode</label>
+              </div>
+              <div class="row justify-content-center">
+                <input type="checkbox" id="2ndmode" name="2ndmode" value="2" checked>
+                <label for="2ndmode"> 2nd mode</label>
+              </div>
+              <div class="row justify-content-center">
+                <input type="checkbox" id="3rdmode" name="3rdmode" value="3" checked>
+                <label for="3rdmode"> 3rd mode</label>
+              </div>
+              <div class="row justify-content-center">
+                <input type="checkbox" id="4thmode" name="4thmode" value="4" checked>
+                <label for="4thmode"> 4th mode</label><br>
+              </div>
+              <div class="row justify-content-center">
+                <button onclick="updatestring()">Apply</button>
+              </div>
               </div>
             </div>
           </div>
@@ -103,5 +122,122 @@
         <script src= "js/particles.js-master/particles.js"></script>
         <script src="js/particles.js-master/demo/js/app.js"></script>
 
+
+        <script>
+            function wave(modelist, omegalist, phaselist,divname) {
+
+                var B = 8
+
+                var res = 100;
+                var L = 1
+
+                var t = 0
+                var dt = 0.015
+
+                var klist = []
+                var omegalist = []
+                var x = [], y = []
+
+
+                for (j = 0; j < modelist.length; j++) {
+                    klist[j] = modelist[j] * Math.PI / L
+                    omegalist[j] = modelist[j] * B / (2 * L)
+                }
+
+                for (i = 0; i < res; i++) {
+                    x[i] = i / res;
+                    y[i] = 0
+                    for (j = 0; j < modelist.length; j++) {
+                        y[i] = y[i] + Alist[j] * Math.sin(klist[j] * x[i]) * Math.cos(omegalist[j] * t + phaselist[j]);
+                    }
+                }
+
+
+                Plotly.newPlot(divname, [{
+                    x: x,
+                    y: y,
+                    /*mode: 'markers'*/
+                }], {
+                    xaxis: {range: [0, x[100]]},
+                    yaxis: {range: [-2.1, 2.1]}
+                })
+
+
+                function compute() {
+                    for (j = 0; j < modelist.length; j++) {
+                        klist[j] = modelist[j] * Math.PI / L
+                        omegalist[j] = modelist[j] * B / (2 * L)
+                    }
+
+                    for (i = 0; i < res; i++) {
+                        x[i] = i / res;
+                        y[i] = 0
+                        for (j = 0; j < modelist.length; j++) {
+                            y[i] = y[i] + Alist[j] * Math.sin(klist[j] * x[i]) * Math.cos(omegalist[j] * t);
+                        }
+                    }
+                    t = t + dt
+                }
+
+                function update() {
+                    compute();
+
+                    Plotly.animate(divname, {
+                        data: [{x: x, y: y}]
+                    }, {
+                        transition: {
+                            duration: 0
+                        },
+                        frame: {
+                            duration: 0,
+                            redraw: false
+                        }
+                    });
+
+                    requestAnimationFrame(update);
+                }
+
+                requestAnimationFrame(update);
+
+            }
+        </script>
+
+
+        <script>
+            function updatestring() {
+
+                divnum = document.getElementById("SavedI").innerHTML
+                var myDiv = document.getElementById("myDiv"+divnum.toString());
+                myDiv.remove();
+                divnum = parseInt(divnum) +1
+
+                var div = document.createElement("div");
+                div.id = 'myDiv'+divnum.toString()
+                div.style.width = "auto";
+                div.style.height = "auto";
+                document.getElementById("myRow").appendChild(div);
+                document.getElementById("SavedI").innerText = divnum.toString()
+
+                var modelist = []
+
+                if (document.getElementById("1rstmode").checked == true) {
+                    modelist.push(1)
+                }
+                if (document.getElementById("2ndmode").checked == true) {
+                    modelist.push(2)
+                }
+                if (document.getElementById("3rdmode").checked == true) {
+                    modelist.push(3)
+                }
+                if (document.getElementById("4thmode").checked == true) {
+                    modelist.push(4)
+                }
+
+                wave(modelist = modelist,phaselist = [1,2,1/6,3],Alist = [1,1/2,1/3,1/4],divname='myDiv'+divnum.toString())
+
+            }
+
+
+        </script>
     </body>
 </html>
